@@ -1,0 +1,26 @@
+const tapInterval = 100;
+const targetElement = document.querySelector('body > div > div.h-\\[100\\%\\].flex.flex-col.items-center.pb-\\[80px\\] > div.mt-\\[10px\\].w-\\[345px\\].h-\\[487px\\].flex-1.bg-\\[url\\(\\/images\\/play-bg\\.png\\)\\].bg-100.bg-no-repeat');
+
+if (targetElement) {
+    targetElement.style.display = 'block';
+    targetElement.style.visibility = 'visible';
+    targetElement.style.opacity = '1';
+
+    const interval = setInterval(() => {
+        targetElement.focus();
+        targetElement.dispatchEvent(new Event('mouseover'));
+
+        const event = new PointerEvent('pointerdown', {
+            bubbles: true,
+            cancelable: true,
+            pointerType: 'touch'
+        });
+        targetElement.dispatchEvent(event);
+
+        console.log('Tapped!');
+    }, tapInterval);
+
+    console.log('Auto tap started. Type "clearInterval(interval)" to stop.');
+} else {
+    console.log('Element not found!');
+}
